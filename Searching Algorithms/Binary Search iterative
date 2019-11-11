@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int binarySearch(const vector<int>& v, int first, int last, int elem)
+{
+	while (first <= last)
+	{
+		int mid = (first + last) / 2;
+
+		if (v[mid] == elem)
+			return mid;
+
+		if (v[mid] < elem)
+			first = mid + 1;
+
+		if (v[mid] >= elem)
+			last = mid - 1;
+	}
+
+	return -1;
+}
+
+int main()
+{
+	int n, elem;
+	cin >> n >> elem;
+	vector<int> v(n);
+	for (int i = 0; i < v.size(); ++i)
+	{
+		cin >> v[i];
+	}
+	if (binarySearch(v, 0, n - 1, elem) == -1)
+		cout << "Not found";
+	else
+		cout << binarySearch(v, 0, n - 1, elem);
+}
+
